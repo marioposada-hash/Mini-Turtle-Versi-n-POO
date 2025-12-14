@@ -1,0 +1,58 @@
+mini_turtle_oo/
+│
+├── mini_turtle_oo/
+│   ├── __init__.py
+│   └── turtle_class.py
+│
+└── main.py
+
+class Tortuga:
+    def __init__(self):
+        self.posicion_x = 0
+
+    def adelante(self, pasos):
+        self.posicion_x += pasos
+        print(f"Avanzando {pasos} → posición x = {self.posicion_x}")
+
+    def abajo(self, pasos):
+        print(f"Bajando {pasos} pasos")
+
+    def reiniciar(self):
+        self.posicion_x = 0
+        print("Posición reiniciada a 0")
+
+from .turtle_class import Tortuga
+
+__all__ = ["Tortuga"]
+
+from mini_turtle_oo import Tortuga
+
+from mini_turtle_oo import Tortuga
+
+t1 = Tortuga()
+t2 = Tortuga()
+
+print("Tortuga 1:")
+t1.adelante(5)
+t1.adelante(5)
+
+print("\nTortuga 2:")
+t2.adelante(2)
+t2.adelante(3)
+
+print("\nEstados finales:")
+print("Tortuga 1 posición:", t1.posicion_x)
+print("Tortuga 2 posición:", t2.posicion_x)
+
+
+Tortuga 1:
+Avanzando 5 → posición x = 5
+Avanzando 5 → posición x = 10
+
+Tortuga 2:
+Avanzando 2 → posición x = 2
+Avanzando 3 → posición x = 5
+
+Estados finales:
+Tortuga 1 posición: 10
+Tortuga 2 posición: 5
