@@ -1,58 +1,87 @@
-mini_turtle_oo/
-│
-├── mini_turtle_oo/
-│   ├── __init__.py
-│   └── turtle_class.py
-│
-└── main.py
+📦 DESCRIPCION DEL PAQUETE PYTHON
 
-class Tortuga:
-    def __init__(self):
-        self.posicion_x = 0
+__ Mini_turtle_drawer es un paquete simple de Python diseñado para demostrar conceptos básicos de programación como el manejo de estado global (posicion_x), la modularización (init.py, drawer_logic.py) y el dibujo basado en texto usando una metáfora de "Tortuga".
 
-    def adelante(self, pasos):
-        self.posicion_x += pasos
-        print(f"Avanzando {pasos} → posición x = {self.posicion_x}")
+El paquete permite dibujar caminos rectos (horizontales y verticales) en la terminal, donde la posición final de un movimiento afecta el inicio del siguiente, y la función reiniciar() permite volver al origen.
 
-    def abajo(self, pasos):
-        print(f"Bajando {pasos} pasos")
+El paquete expone tres funciones principales:
 
-    def reiniciar(self):
-        self.posicion_x = 0
-        print("Posición reiniciada a 0")
+    Adelante: Dibuja la línea horizontal y avanza la posición X.
+    Abajo: Dibuja la línea vertical y coloca la tortuga (🐢) al final.
+    Reiniciar(): Resetea la posición horizontal (posicion_x) a cero (0).
 
-from .turtle_class import Tortuga
+🚀 EJEMPLO DE USO (main.py)
 
-__all__ = ["Tortuga"]
+Para ver el paquete en acción, puedes ejecutar el script de prueba. Este script demuestra cómo la posición se acumula y cómo reiniciar() afecta el siguiente dibujo. Para esto puedes abrir y copiar el codigo que hay en el archivo "main.py" O puedes copiarlo desde aca:
 
-from mini_turtle_oo import Tortuga
+tortuga = "🐢"
+espacios = 0
 
-from mini_turtle_oo import Tortuga
+def adelante(pasos_adelante):
+    
+    global espacios
+    print (espacios * "  " + " _" * pasos_adelante)
+    espacios = espacios + pasos_adelante
+    
+    
+def abajo(pasos_abajo):
+    
+    for i in range(pasos_abajo-1):
+        camino_abajo = "  " * espacios + "|\n"
+        print(camino_abajo, end='')
+    print("  " * espacios + tortuga)
 
-t1 = Tortuga()
-t2 = Tortuga()
+def reiniciar():
 
-print("Tortuga 1:")
-t1.adelante(5)
-t1.adelante(5)
+    global espacios
+    espacios = 0
+    print("\n--- CAMINO REINICIADO ---")
+    print("El siguiente camino comenzará desde la posición horizontal 0.")
 
-print("\nTortuga 2:")
-t2.adelante(2)
-t2.adelante(3)
+adelante(5)
+abajo(4)
 
-print("\nEstados finales:")
-print("Tortuga 1 posición:", t1.posicion_x)
-print("Tortuga 2 posición:", t2.posicion_x)
+adelante(5)
+abajo(4)
 
+adelante(5)
+abajo(4)
 
-Tortuga 1:
-Avanzando 5 → posición x = 5
-Avanzando 5 → posición x = 10
+_ _ _ _ _
+          |
+          |
+          |
+          🐢
+           _ _ _ _ _
+                    |
+                    |
+                    |
+                    🐢
+                     _ _ _ _ _
+                              |
+                              |
+                              |
+                              🐢
 
-Tortuga 2:
-Avanzando 2 → posición x = 2
-Avanzando 3 → posición x = 5
+reiniciar() "Con esta instruccion se borra el proceso y se empieza desde cero."
 
-Estados finales:
-Tortuga 1 posición: 10
-Tortuga 2 posición: 5
+--- CAMINO REINICIADO ---
+
+El siguiente camino comenzará desde la posición horizontal 0.
+
+adelante(5)
+abajo(4)
+
+adelante(5)
+abajo(4)
+
+ _ _ _ _ _
+          |
+          |
+          |
+          🐢
+           _ _ _ _ _
+                    |
+                    |
+                    |
+                    🐢
