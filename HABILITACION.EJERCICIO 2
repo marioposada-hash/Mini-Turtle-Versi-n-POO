@@ -1,0 +1,83 @@
+🧩 Ejercicio 2 – mini_tracker (Versión POO)
+
+# mini_tracker (Versión POO)
+
+Paquete en Python para registrar tiempo de trabajo usando
+programación orientada a objetos.
+
+## Clase pública
+
+### MiniTracker
+
+#### Métodos
+- iniciar_tarea(tarea)
+- detener_tarea(tiempo_trabajado)
+- consultar_total()
+
+## Ejemplo de uso
+
+```python
+from mini_tracker import MiniTracker
+
+tracker = MiniTracker()
+tracker.iniciar_tarea("Estudio")
+tracker.detener_tarea(2.0)
+
+print(tracker.consultar_total())
+
+
+    
+
+"""
+Lógica de negocio del mini tracker (versión POO).
+El estado se encapsula dentro de la clase.
+"""
+
+class MiniTracker:
+    def __init__(self):
+        # Estado interno (ya no global)
+        self._tiempo_total_acumulado = 0.0
+
+    def iniciar_tarea(self, tarea):
+        """
+        Inicia una tarea.
+        """
+        print(f"Iniciando tarea: {tarea}")
+
+    def detener_tarea(self, tiempo_trabajado):
+        """
+        Detiene la tarea y acumula el tiempo trabajado.
+        """
+        self._tiempo_total_acumulado += tiempo_trabajado
+
+    def consultar_total(self):
+        """
+        Devuelve el tiempo total acumulado.
+        """
+        return self._tiempo_total_acumulado
+
+    """
+Interfaz pública del paquete mini_tracker (POO).
+Expone únicamente la clase MiniTracker.
+"""
+
+from .tracker import MiniTracker
+
+from mini_tracker import MiniTracker
+
+# Crear una instancia del tracker
+tracker = MiniTracker()
+
+# Simulación de flujo de trabajo
+tracker.iniciar_tarea("Desarrollo del módulo A")
+tracker.detener_tarea(2.5)
+
+tracker.iniciar_tarea("Corrección de errores")
+tracker.detener_tarea(1.5)
+
+total = tracker.consultar_total()
+print(f"Tiempo total trabajado: {total} horas")
+
+Iniciando tarea: Desarrollo del módulo A
+Iniciando tarea: Corrección de errores
+Tiempo total trabajado: 4.0 horas
